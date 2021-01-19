@@ -1,0 +1,27 @@
+{
+  "name": "test",
+  "version": 0,
+  "inputs": [
+    {
+      "name": "eta",
+      "type": "real",
+      "description": "tau eta"
+    }
+  ],
+  "output": {
+    "name": "weight",
+    "type": "real"
+  },
+  "data": {
+    "nodetype": "binning",
+    "edges": [
+      0.0,
+      1.1,
+      2.5
+    ],
+    "content": [
+      0.0,
+      1.0
+    ]
+  }
+}
