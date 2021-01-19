@@ -23,9 +23,8 @@ ID (e.g. antiEle, DeepTau2017v2p1VSe)
       ├─ key:genmatch==1,3 (e -> tau fake)
       │  └─ category:WP
       │     └─ binned:abseta
-      │        └─ category:WP
-      │           └─ category:syst (nom, up, down)
-      │              └─ float:SF
+      │        └─ category:syst (nom, up, down)
+      │           └─ float:SF
       └─ key:default (genmatch!=1,3)
          └─ float:SF
 ```
