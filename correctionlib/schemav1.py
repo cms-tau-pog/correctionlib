@@ -20,8 +20,11 @@ class Model(BaseModel):
 
 class Variable(Model):
     name: str
+    default: Union[str,int,float] = None
     type: Literal["string", "int", "real"]
     "Implicitly 64 bit integer and double-precision floating point?"
+    #allow: List[Union[str,int]] = None
+    #range: List[float] = None
     description: Optional[str]
 
 
@@ -95,8 +98,8 @@ class Category(Model):
     nodetype: Literal["category"]
     input: str
     keys: List[Union[str,int]]
-    content: List[Content]
     default: Content = None
+    content: List[Content]
     
     @validator('content')
     def match_content_key(cls,content,values):
