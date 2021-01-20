@@ -14,7 +14,7 @@ This is a rough summary of the available SFs for `DeepTau2017v2p1` from the [off
 | mu -> tau fake | `2`, `4`    | –                          | –                        | vs. eta                   | – (±1% unc.)   |
 
 
-## Structure e -> tau fake rate SF
+## Structure of e -> tau fake rate SFs
 One JSON file per ID and year.
 ```
 ID (e.g. antiEle, DeepTau2017v2p1VSe)
@@ -30,7 +30,7 @@ ID (e.g. antiEle, DeepTau2017v2p1VSe)
 ```
 
 
-## Structure mu -> tau fake rate SF
+## Structure of mu -> tau fake rate SFs
 One JSON file per ID and year.
 ```
 ID (e.g. antiMu, DeepTau2017v2p1VSmu)
@@ -46,7 +46,7 @@ ID (e.g. antiMu, DeepTau2017v2p1VSmu)
 ```
 
 
-## Structure real tau efficiency rate SF
+## Structure of real tau efficiency rate SFs
 One JSON file per ID and year.
 Users can choose either pT- __or__ DM-dependent SFs.
 ```
@@ -66,7 +66,7 @@ ID (e.g. MVAoldDM2017v2, DeepTau2017v2p1VSjet)
 ```
 
 
-## Structure tau energy scale
+## Structure of tau energy scales
 One JSON file per ID and year.
 ```
 year
@@ -85,3 +85,6 @@ year
          └─ float:SF
 ```
 
+
+## Structure of tau triggers
+TBA.

@@ -1,0 +1,30 @@
+{
+  "name": "test_category",
+  "version": 0,
+  "inputs": [
+    {
+      "name": "dm",
+      "type": "int",
+      "description": "decay mode"
+    }
+  ],
+  "output": {
+    "name": "weight",
+    "type": "real"
+  },
+  "data": {
+    "nodetype": "category",
+    "input": "dm",
+    "keys": [
+      "0",
+      "1",
+      "2"
+    ],
+    "content": [
+      0.0,
+      1.0,
+      2.0
+    ],
+    "default": 1.0
+  }
+}

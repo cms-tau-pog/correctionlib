@@ -1,5 +1,5 @@
 {
-  "name": "test",
+  "name": "test_2D",
   "version": 0,
   "inputs": [
     {
@@ -19,6 +19,10 @@
   },
   "data": {
     "nodetype": "multibinning",
+    "inputs": [
+      "eta",
+      "pt"
+    ],
     "edges": [
       [
         0.0,

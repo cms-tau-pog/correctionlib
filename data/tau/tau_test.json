@@ -2,7 +2,7 @@
   "schema_version": 1,
   "corrections": [
     {
-      "name": "test",
+      "name": "test_1D",
       "version": 0,
       "inputs": [
         {
@@ -17,6 +17,7 @@
       },
       "data": {
         "nodetype": "binning",
+        "input": "eta",
         "edges": [
           0.0,
           1.1,
@@ -29,7 +30,7 @@
       }
     },
     {
-      "name": "test",
+      "name": "test_2D",
       "version": 0,
       "inputs": [
         {
@@ -49,6 +50,10 @@
       },
       "data": {
         "nodetype": "multibinning",
+        "inputs": [
+          "eta",
+          "pt"
+        ],
         "edges": [
           [
             0.0,
@@ -67,6 +72,36 @@
           2.0,
           3.0
         ]
+      }
+    },
+    {
+      "name": "test_category",
+      "version": 0,
+      "inputs": [
+        {
+          "name": "dm",
+          "type": "int",
+          "description": "decay mode"
+        }
+      ],
+      "output": {
+        "name": "weight",
+        "type": "real"
+      },
+      "data": {
+        "nodetype": "category",
+        "input": "dm",
+        "keys": [
+          "0",
+          "1",
+          "2"
+        ],
+        "content": [
+          0.0,
+          1.0,
+          2.0
+        ],
+        "default": 1.0
       }
     }
   ]

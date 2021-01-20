@@ -29,27 +29,29 @@
   },
   "data": {
     "nodetype": "category",
+    "input": "genmatch",
     "keys": [
-      "1",
-      "*"
+      "1"
     ],
     "content": [
       {
         "nodetype": "category",
+        "input": "wp",
         "keys": [
           "Medium"
         ],
         "content": [
           {
             "nodetype": "category",
+            "input": "syst",
             "keys": [
               "nom",
-              "up",
-              "down"
+              "unc"
             ],
             "content": [
               {
                 "nodetype": "binning",
+                "input": "abseta",
                 "edges": [
                   0.0,
                   1.46,
@@ -64,6 +66,7 @@
               },
               {
                 "nodetype": "binning",
+                "input": "abseta",
                 "edges": [
                   0.0,
                   1.46,
@@ -71,30 +74,16 @@
                   2.3
                 ],
                 "content": [
-                  1.0,
-                  1.0,
-                  1.0
-                ]
-              },
-              {
-                "nodetype": "binning",
-                "edges": [
-                  0.0,
-                  1.46,
-                  1.558,
-                  2.3
-                ],
-                "content": [
-                  1.0,
-                  1.0,
-                  1.0
+                  0.1,
+                  0.1,
+                  0.1
                 ]
               }
             ]
           }
         ]
-      },
-      1.0
-    ]
+      }
+    ],
+    "default": 1.0
   }
 }

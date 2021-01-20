@@ -3,6 +3,7 @@
 # https://github.com/nsmith-/correctionlib/blob/master/convert.ipynb
 # https://github.com/cms-tau-pog/TauIDSFs/blob/master/utils/createSFFiles.py
 import sys; sys.path.append('..')
+assert sys.version_info>=(3,8),"Python version must be newer than 3.8, currently %s.%s"%(sys.version_info[:2])
 from correctionlib.schemav1 import Correction, CorrectionSet
 import json, jsonschema
 
@@ -17,13 +18,14 @@ def test():
   print(xbins,sfs)
   corr1 = Correction.parse_obj({
     'version': 0,
-    'name':    "test",
+    'name':    "test_1D",
     'inputs': [
       {'name': "eta", 'type': "real", 'description': "tau eta"},
     ],
     'output': {'name': "weight", 'type': "real"},
     'data': {
       'nodetype': "binning",
+      'input': "eta",
       'edges': xbins,
       'content': sfs,
     },
@@ -41,7 +43,7 @@ def test():
   print(xbins,ybins,sfs)
   corr2 = Correction.parse_obj({
     'version': 0,
-    'name':    "test",
+    'name':    "test_2D",
     'inputs': [
       {'name': "eta", 'type': "real", 'description': "tau eta"},
       {'name': "pt",  'type': "real", 'description': "tau pt"},
@@ -49,21 +51,45 @@ def test():
     'output': {'name': "weight", 'type': "real"},
     'data': {
       'nodetype': "multibinning",
+      'inputs': ["eta","pt"],
       'edges': [ xbins, ybins ],
       'content': sfs2,
     },
   })
   print(corr2)
   
+  # CREATE & WRITE category
+  print("\n>>> category SFs")
+  keys = [0,1,2]
+  sfs3 = [float(s) for s in range(len(keys))]
+  corr3 = Correction.parse_obj({
+    'version': 0,
+    'name':    "test_category",
+    'inputs': [
+      {'name': "dm", 'type': "int", 'description': "decay mode"},
+    ],
+    'output': {'name': "weight", 'type': "real"},
+    'data': {
+      'nodetype': "category",
+      'input': "dm",
+      'keys': keys,
+      'default': 1.,
+      'content': sfs3,
+    },
+  })
+  print(corr3)
+  
   # WRITING
+  print("\n>>> Writing...")
   set = CorrectionSet.parse_obj({
     'schema_version': 1,
-    'corrections': [corr1,corr2,]
+    'corrections': [corr1,corr2,corr3,]
   })
   for fname, data in [("../data/tau/tau_test1.json",corr1),
                       ("../data/tau/tau_test2.json",corr2),
+                      ("../data/tau/tau_test3.json",corr3),
                       ("../data/tau/tau_test.json",set)]:
-    print(f">>> Writing {fname}...")
+    print(">>>  ",fname)
     with open(fname,'w') as fout:
       fout.write(data.json(exclude_unset=True,indent=2))
   

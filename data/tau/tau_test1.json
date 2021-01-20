@@ -1,5 +1,5 @@
 {
-  "name": "test",
+  "name": "test_1D",
   "version": 0,
   "inputs": [
     {
@@ -14,6 +14,7 @@
   },
   "data": {
     "nodetype": "binning",
+    "input": "eta",
     "edges": [
       0.0,
       1.1,
