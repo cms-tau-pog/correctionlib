@@ -1,0 +1,72 @@
+{
+  "name": "test",
+  "version": 0,
+  "inputs": [
+    {
+      "name": "pt",
+      "type": "real",
+      "description": "tau pt"
+    },
+    {
+      "name": "dm",
+      "type": "int",
+      "description": "tau decay mode (0, 1, 10, or 11)"
+    },
+    {
+      "name": "wp",
+      "type": "string",
+      "description": "DeepTauVSjet WP: VVVLoose-VVTight"
+    },
+    {
+      "name": "syst",
+      "type": "string",
+      "description": "systematic 'nom', 'up', 'down'"
+    }
+  ],
+  "output": {
+    "name": "weight",
+    "type": "real"
+  },
+  "data": {
+    "nodetype": "category",
+    "input": "wp",
+    "keys": [
+      "Tight"
+    ],
+    "content": [
+      {
+        "nodetype": "category",
+        "input": "syst",
+        "keys": [
+          "nom",
+          "up",
+          "down"
+        ],
+        "content": [
+          {
+            "expression": "x<20?0: x<25?1.00: x<30?1.01: x<35?1.02: x<40?1.03: 1.04",
+            "parser": "TFormula",
+            "parameters": [
+              1
+            ]
+          },
+          {
+            "expression": "x<20?0: x<25?1.10: x<30?1.11: x<35?1.12: x<40?1.13: x<500?1.14: x<1000?1.04+0.2*x/500.: 1.44",
+            "parser": "TFormula",
+            "parameters": [
+              1
+            ]
+          },
+          {
+            "expression": "x<20?0: x<25?0.90: x<30?0.91: x<35?0.92: x<40?0.93: x<500?0.94: x<1000?1.04-0.2*x/500.: 0.64",
+            "parser": "TFormula",
+            "parameters": [
+              1
+            ]
+          }
+        ]
+      }
+    ],
+    "default": 1.0
+  }
+}

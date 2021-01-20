@@ -11,6 +11,8 @@ import json, jsonschema
 
 def maketesunc(low,high):
   """Interpolate."""
+  # f = TFormula('f',sf)
+  # for x in [10,34,35,(170+34)/2,100,169.9,170,171,200,2000]: x, f.Eval(x)
   return f"x<34?{low}: x<170?{low}+({high}-{low})/(170.-34.)*(x-34): {high}"
 
 def tes():
