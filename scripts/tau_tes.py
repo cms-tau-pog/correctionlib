@@ -29,7 +29,7 @@ def tes():
   fesuncs = {dm: [0.1]*(len(etabins)-1) for dm in fesdms}
   corr1   = Correction.parse_obj({
     'version': 0,
-    'name':    "test",
+    'name':    "tau_energy_scale_test",
     'inputs': [
       {'name': "eta",      'type': "real",   'description': "tau eta"},
       {'name': "pt",       'type': "real",   'description': "tau pt"},
@@ -39,21 +39,21 @@ def tes():
     ],
     'output': {'name': "weight", 'type': "real"},
     'data': {
-      'nodetype': "category",
+      'nodetype': 'category',
       'input': "genmatch",
       'keys': [1,2,5],
       'default': 1.0, # default TES if unrecognized genmatch
       'content': [
       
         # REAL TAU (genmatch==5)
-        { 'nodetype': "category", # DM
+        { 'nodetype': 'category', # DM
           'input': "dm",
           'keys': dms,
           'default': 1.0, # default TES if unrecognized DM
           'content': [
-            { 'nodetype': "category", # syst
+            { 'nodetype': 'category', # syst
               'input': "syst",
-              'keys': ["nom","unc"],
+              'keys': ['nom','unc'],
               'content': [
                 tes[dm], # central value (pt-independent)
                 { 'parser': 'TFormula', # uncertainty (pt-dependent)
@@ -66,29 +66,29 @@ def tes():
         },
         
         # E -> TAU FAKE (genmatch==1,3)
-        { 'nodetype': "category", # DM
+        { 'nodetype': 'category', # DM
           'input': "dm",
           'keys': fesdms,
           'default': 1.0, # default FES
           'content': [
-            { 'nodetype': "category", # syst
+            { 'nodetype': 'category', # syst
               'input': "syst",
-              'keys': ["nom","up","down"],
+              'keys': ['nom','up','down'],
               'content': [
                 { # nominal
-                  'nodetype': "binning", # eta
+                  'nodetype': 'binning', # eta
                   'input': "abseta",
                   'edges': etabins,
                   'content': fesuncs[dm],
                 },
                 { # up
-                  'nodetype': "binning",
+                  'nodetype': 'binning',
                   'input': "abseta",
                   'edges': etabins,
                   'content': fesuncs[dm],
                 },
                 { # down
-                  'nodetype': "binning",
+                  'nodetype': 'binning',
                   'input': "abseta",
                   'edges': etabins,
                   'content': fesuncs[dm],
@@ -99,9 +99,9 @@ def tes():
         },
         
         # MU -> TAU FAKE (genmatch==2,4)
-        { 'nodetype': "category", # syst
+        { 'nodetype': 'category', # syst
           'input': "syst",
-          'keys': ["nom","unc"],
+          'keys': ['nom','unc'],
           'content': [
             1.00, # nominal
             0.01, # uncertainty (constant)

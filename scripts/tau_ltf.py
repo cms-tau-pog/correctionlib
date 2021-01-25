@@ -22,7 +22,7 @@ def etf():
   print(xbins,sfs)
   corr1 = Correction.parse_obj({
     'version': 0,
-    'name':    "test",
+    'name':    "DeepTau2017v2p1VSe_test",
     'inputs': [
       {'name': "eta",      'type': "real",   'description': "tau eta"},
       {'name': "genmatch", 'type': "int",    'description': "genmatch (0 or 6: no match, jet, 1 or 3: electron, 2 or 4: muon, 5: real tau"},
@@ -31,25 +31,25 @@ def etf():
     ],
     'output': {'name': "weight", 'type': "real"},
     'data': { # category:genmatch -> category:WP -> category:syst -> binning:eta
-      'nodetype': "category",
+      'nodetype': 'category',
       'input': "genmatch",
       'keys': [1],
       'default': 1.0, # default value
       'content': [
-        { 'nodetype': "category", # WP
+        { 'nodetype': 'category', # WP
           'input': "wp",
           'keys': wps,
           'content': [
-            { 'nodetype': "category", # syst
+            { 'nodetype': 'category', # syst
               'input': "syst",
-              'keys': ["nom", "unc"],
+              'keys': ['nom', 'unc'],
               'content': [
-                { 'nodetype': "binning", # eta
+                { 'nodetype': 'binning', # eta
                   'input': "abseta",
                   'edges': xbins,
                   'content': sfs[wp],
                 },
-                { 'nodetype': "binning",
+                { 'nodetype': 'binning',
                   'input': "abseta",
                   'edges': xbins,
                   'content': uncs[wp],
@@ -80,7 +80,7 @@ def mtf():
   print(xbins,sfs)
   corr1 = Correction.parse_obj({
     'version': 0,
-    'name':    "test",
+    'name':    "DeepTau2017v2p1VSmu_test",
     'inputs': [
       {'name': "eta",      'type': "real",   'description': "tau eta"},
       {'name': "genmatch", 'type': "int",    'description': "genmatch (0 or 6: no match, jet, 1 or 3: electron, 2 or 4: muon, 5: real tau"},
@@ -89,25 +89,25 @@ def mtf():
     ],
     'output': {'name': "weight", 'type': "real"},
     'data': { # category:genmatch -> category:WP -> category:syst -> binning:eta
-      'nodetype': "category",
+      'nodetype': 'category',
       'input': "genmatch",
       'keys': [2],
       'default': 1.0, # default value
       'content': [
-        { 'nodetype': "category", # WP
+        { 'nodetype': 'category', # WP
           'input': "wp",
           'keys': wps,
           'content': [
-            { 'nodetype': "category", # syst
+            { 'nodetype': 'category', # syst
               'input': "syst",
-              'keys': ["nom", "unc"],
+              'keys': ['nom', 'unc'],
               'content': [
-                { 'nodetype': "binning", # eta
+                { 'nodetype': 'binning', # eta
                   'input': "abseta",
                   'edges': xbins,
                   'content': sfs[wp],
                 },
-                { 'nodetype': "binning",
+                { 'nodetype': 'binning',
                   'input': "abseta",
                   'edges': xbins,
                   'content': uncs[wp],

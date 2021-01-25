@@ -1,5 +1,5 @@
 {
-  "name": "test",
+  "name": "DeepTau2017v2p1VSmu_test",
   "version": 0,
   "inputs": [
     {
@@ -33,6 +33,7 @@
     "keys": [
       "2"
     ],
+    "default": 1.0,
     "content": [
       {
         "nodetype": "category",
@@ -189,7 +190,6 @@
           }
         ]
       }
-    ],
-    "default": 1.0
+    ]
   }
 }

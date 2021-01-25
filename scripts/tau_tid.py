@@ -24,7 +24,7 @@ def tid():
   ptsfs   = {wp: {'nom':sf, 'up':sfup, 'down':sfdn} for wp in wps}
   corr1   = Correction.parse_obj({
     'version': 0,
-    'name':    "test",
+    'name':    "DeepTau2017v2p1VSjet_test",
     'inputs': [
       {'name': "pt",       'type': "real",   'description': "tau pt"},
       {'name': "dm",       'type': "int",    'description': "tau decay mode (0, 1, 10, or 11)"},
@@ -34,14 +34,14 @@ def tid():
     ],
     'output': {'name': "weight", 'type': "real"},
     'data': {
-      'nodetype': "category",
+      'nodetype': 'category',
       'input': "wp",
       'keys': wps,
       'default': 1.0, # default TES if unrecognized genmatch
       'content': [
       
         # REAL TAU (genmatch==5)
-        { 'nodetype': "category", # syst
+        { 'nodetype': 'category', # syst
           'input': "syst",
           'keys': ['nom','up','down'],
           'content': [

@@ -1,5 +1,5 @@
 {
-  "name": "test",
+  "name": "DeepTau2017v2p1VSe_test",
   "version": 0,
   "inputs": [
     {
@@ -33,6 +33,7 @@
     "keys": [
       "1"
     ],
+    "default": 1.0,
     "content": [
       {
         "nodetype": "category",
@@ -83,7 +84,6 @@
           }
         ]
       }
-    ],
-    "default": 1.0
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "name": "test",
+  "name": "tau_energy_scale_test",
   "version": 0,
   "inputs": [
     {
@@ -40,6 +40,7 @@
       "2",
       "5"
     ],
+    "default": 1.0,
     "content": [
       {
         "nodetype": "category",
@@ -49,6 +50,7 @@
           "1",
           "10"
         ],
+        "default": 1.0,
         "content": [
           {
             "nodetype": "category",
@@ -104,8 +106,7 @@
               }
             ]
           }
-        ],
-        "default": 1.0
+        ]
       },
       {
         "nodetype": "category",
@@ -114,6 +115,7 @@
           "0",
           "1"
         ],
+        "default": 1.0,
         "content": [
           {
             "nodetype": "category",
@@ -215,8 +217,7 @@
               }
             ]
           }
-        ],
-        "default": 1.0
+        ]
       },
       {
         "nodetype": "category",
@@ -230,7 +231,6 @@
           0.01
         ]
       }
-    ],
-    "default": 1.0
+    ]
   }
 }

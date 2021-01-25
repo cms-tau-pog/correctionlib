@@ -38,8 +38,8 @@ ID (e.g. antiMu, DeepTau2017v2p1VSmu)
    └─ category:genmatch (0-5)
       ├─ key:genmatch==2,4 (mu -> tau fake)
       │  └─ category:WP
-      │     └─ binned:abseta
-      │        └─ category:syst (nom, up, down)
+      │     └─ category:syst (nom, up, down)
+      │        └─ binned:abseta
       │           └─ float:SF
       └─ key:default (genmatch!=2,4)
          └─ float:SF
@@ -65,6 +65,10 @@ ID (e.g. MVAoldDM2017v2, DeepTau2017v2p1VSjet)
          └─ float:SF
 ```
 
+<p align="center">
+  <img src="docs/Tau_SF_vs_pt.gif" alt="Tau DeepTau2017v2VSjet efficiency SF" width="380"/>
+</p>
+
 
 ## Structure of tau energy scales
 One JSON file per ID and year.
@@ -75,7 +79,7 @@ year
    │  └─ category:DM
    │     └─ category:syst (nom, up, down)
    │        └─ TFormula
-   ├─ key:genmatch==1,3 (electron)
+   ├─ key:genmatch==1,3 (e -> tau fake)
    │  └─ category:DM
    │     └─ binned:eta
    │        └─ category:syst (nom, up, down)
@@ -84,6 +88,10 @@ year
       └─ category:syst (nom, up, down)
          └─ float:SF
 ```
+
+<p align="center">
+  <img src="docs/TESunc.png" alt="Tau energy scale uncertainty treatment" width="380"/>
+</p>
 
 
 ## Structure of tau triggers
