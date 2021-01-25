@@ -66,7 +66,7 @@ ID (e.g. MVAoldDM2017v2, DeepTau2017v2p1VSjet)
 ```
 
 <p align="center">
-  <img src="docs/Tau_SF_vs_pt.gif" alt="Tau DeepTau2017v2VSjet efficiency SF" width="380"/>
+  <img src="../../docs/Tau_SF_vs_pt.gif" alt="Tau DeepTau2017v2VSjet efficiency SF" width="380"/>
 </p>
 
 
@@ -90,7 +90,7 @@ year
 ```
 
 <p align="center">
-  <img src="docs/TESunc.png" alt="Tau energy scale uncertainty treatment" width="380"/>
+  <img src="../../docs/TESunc.png" alt="Tau energy scale uncertainty treatment" width="380"/>
 </p>
 
 
