@@ -8,7 +8,7 @@
 #   scp ineuteli@lxplus.cern.ch:/afs/cern.ch/work/l/lwezenbe/public/TriggerSFs/JSON/*json data/tau/new/
 #   scripts/tau_combine.py -y 2018ReReco
 #   scripts/tau_combine.py a=DeepTauVSmu.json b=DeepTauVSjet.json
-#   scp data/tau/new/*2017* ineuteli@lxplus.cern.ch:/eos/cms/store/group/phys_tau/JSONPOG/TauPOG_v2/POG/TAU/2017_ReReco/
+#   scp data/tau/new/*2017ReReco* ineuteli@lxplus.cern.ch:/eos/cms/store/group/phys_tau/JSONPOG/TauPOG_v2/POG/TAU/2017_ReReco/
 import os, sys
 import glob
 import re
@@ -98,6 +98,7 @@ def main(args):
         continue
       info = info.replace('$IDS'," (%s)"%(', '.join(sorted(ids))))
       print(f">>> Creating CorrectionSet...")
+      print(schema.VERSION)
       cset = schema.CorrectionSet(schema_version=schema.VERSION,description=info,corrections=corrs)
       print(f">>> Writing {foutname}...")
       JSONEncoder.write(cset,foutname,maxlistlen=18)
@@ -123,7 +124,6 @@ if __name__ == '__main__':
   parser.add_argument('-v', '--verbose',  dest='verbosity', type=int, nargs='?', const=1, default=0,
                                           help="set verbosity" )
   args = parser.parse_args()
-  print()
   main(args)
   print(">>> Done!\n")
   
