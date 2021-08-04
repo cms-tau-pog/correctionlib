@@ -186,7 +186,7 @@ def main(args):
                               outdir=outdir,tag=tag,verb=verbosity-1)
         else:
           xvar = "%s-dependent"%('DM' if ptsfs else 'pT')
-          print(">>> Could not make {id} SFs for {era}: Did not find {xvar} SF file...")
+          print(f">>> Could not make {id} SFs for {era}: Did not find {xvar} SF file...")
   
   # TAU ANTI-ELECTRON/MUON SFs
   for ltype in ['e','mu']:
