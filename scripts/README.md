@@ -43,7 +43,12 @@ To compare the old (ROOT) and new (JSON) SFs and their respective tools, use
 ```
 git clone https://github.com/cms-tau-pog/TauIDSFs TauIDSFs
 ./scripts/tau_compare_tools.py -I DeepTau2017v2p1VSjet -y 2018ReReco -g 1 2 5 6
+./scripts/tau_compare_tools.py -I DeepTau2017v2p1VSe -y 2018ReReco -g 1 2 5 6
 ./scripts/tau_compare_tools.py -E DeepTau2017v2p1 -y 2018ReReco -d 0 1 10 11 -g 1 2 5 6
+```
+You need `TauIDSFs`, and you might need a `ROOT` installation that is compiled for `python3`
+```
+python3 -c 'import ROOT'
 ```
 
 ## Combination
@@ -52,10 +57,11 @@ Once all JSONs are complete, create a master JSON (per year) as follows
 ./scripts/tau_combine.py -y 2018ReReco
 ```
 which will look for all JSONs with name `data/tau/new/tau_*2018ReReco.json`.
-Otherwise, specify which to combine:
+Otherwise, specify which to files to combine via keys, e.g.:
 ```
-scripts/tau_combine.py a=DeepTauVSmu.json b=DeepTauVSjet.json
+scripts/tau_combine.py DeepTau2017v2p1VSmu=DeepTauVSmu.json DeepTau2017v2p1VSjet=DeepTauVSjet.json
 ```
+or edit the script and use the `--prelim` flag.
 Copy to the tau repo:
 ```
 scp data/tau/new/*2018ReReco* $USER@lxplus.cern.ch:/eos/cms/store/group/phys_tau/JSONPOG/TauPOG_v2/POG/TAU/2018_ReReco/
