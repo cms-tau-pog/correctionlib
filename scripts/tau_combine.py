@@ -15,6 +15,9 @@ import re
 from datetime import date
 from utils import *
 
+oldera = { # placeholder
+  'UL2016'
+}
 
 def main(args):
   if args.outdir.endswith(".json"):
@@ -30,6 +33,7 @@ def main(args):
   zip       = args.zip
   validate  = args.validate
   verbosity = args.verbosity
+  prelim    = args.prelim #True #and False
   
   if finnames:
     header(f"Corrections")
@@ -51,14 +55,23 @@ def main(args):
       print(">>> Please specify an era you would like to combine, e.g. scripts/tau_combine.py -y 2018ReReco")
     for era in eras:
       header(f"Corrections for {era}")
+      oldera   = '2016Legacy' if '2016' in era else '2017ReReco' if '2017' in era else '2018ReReco'
       info     = f"Correction for simulated tau object, as recommended by the TauPOG for {era}; "+\
                  "tau identification efficiency and fake rate scale factors$IDS, "+\
                  "tau energy scale, and tau trigger scale factors. "+\
                  "For more info, please visit https://twiki.cern.ch/twiki/bin/viewauth/CMS/TauIDRecommendationForRun2"+\
                  " (This file was created on %s)"%(today)
       foutname = outexp.replace('$ERA','_'+era).replace('$TAG',tag) # output JSON
-      finname  = f"data/tau/new/*{era}{tag}.json"
+      finname  = f"data/tau/new/*_{era}{tag}.json"
       finnames = glob.glob(finname)+glob.glob(finname+".gz")
+      if prelim: # get placeholder
+        info   = info.replace("Correction for","PRELIMINARY correction for")
+        oldfname = finname.replace('_'+era,'VSmu_'+oldera)
+        oldfiles = glob.glob(oldfname)
+        print(f"Look for placeholders {oldfname}. Found: {', '.join(oldfiles)}")
+        assert oldfiles, f"Old file {oldfname} as placeholder does not exist!"
+        finnames.append(oldfiles[0])
+        era    = "(?:%s|%s)"%(era,oldera)
       finexp   = re.compile(r"tau_sf_(pt-dm|eta)_([a-zA-Z0-9]+)_%s%s\.json"%(era,tag))
       corrs    = [ ]
       esfname  = None
@@ -83,8 +96,17 @@ def main(args):
         name = id
         if xvar=='dm':
           rename += "_dm" # DM-dependent VSjet ID
+        #if prelim and "VSmu" in id:
+        #  oldera   = '2017Legacy' if '2016' in era else '2017ReReco' if '2017' in era else '2018ReReco'
+        #  newfname = fname
+        #  fname    = fname.replace('_'+era,'_'+oldera) # placeholder
+        #  print(warn(f">>> Replacing {newfname} -> {fname}"))
+        #  assert os.path.isfile(fname), f"Old file {fname} as placeholder for {newfname} does not exist!"
         print(f">>> Adding {green(name)}: {fname}...")
         corr = readjson(fname,rename=name,validate=validate,verb=verbosity)
+        if prelim and oldera in fname:
+          corr.description += " (%s placeholder)"%(oldera)
+          print(f">>> Appended placeholder description: '{corr.description}'")
         corrs.append(corr)
         added.append(fname)
         ids.append(id)
@@ -98,7 +120,7 @@ def main(args):
         continue
       info = info.replace('$IDS'," (%s)"%(', '.join(sorted(ids))))
       print(f">>> Creating CorrectionSet...")
-      print(schema.VERSION)
+      print(f">>> Version: {schema.VERSION}")
       cset = schema.CorrectionSet(schema_version=schema.VERSION,description=info,corrections=corrs)
       print(f">>> Writing {foutname}...")
       JSONEncoder.write(cset,foutname,maxlistlen=18)
@@ -119,6 +141,7 @@ if __name__ == '__main__':
   #parser.add_argument('-I', '--tid',      dest='tids', nargs='+', help="tau ID" )
   #parser.add_argument('-E', '--tes',      dest='tes', nargs='+', help="tau ES" )
   parser.add_argument('-y', '--era',      dest='eras', default=[ ], nargs='+', help="filter by era" )
+  parser.add_argument('-p', '--prelim',   action='store_true', help="preliminary" )
   parser.add_argument('-z', '--zip',      action='store_true', help="gzip JSON file" )
   parser.add_argument('-V', '--validate', action='store_true', help="validate JSON" )
   parser.add_argument('-v', '--verbose',  dest='verbosity', type=int, nargs='?', const=1, default=0,
