@@ -1,3 +1,9 @@
+# NEW REPOSITORY
+This repository has been superseded by https://gitlab.cern.ch/cms-tau-pog/jsonpog-integration/-/tree/TauPOG_v2/POG/TAU/scripts<br><br>
+
+
+# DEPRECATED README
+
 # TauPOG Corrections
 
 These is the test area for the JSON files for the TauPOG. The are created with the scripts in [`scripts/`](../../scripts).
