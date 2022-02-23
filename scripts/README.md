@@ -1,3 +1,9 @@
+# NEW REPOSITORY
+This repository has been superseded by https://gitlab.cern.ch/cms-tau-pog/jsonpog-integration/-/tree/TauPOG_v2/POG/TAU/scripts<br><br>
+
+
+# DEPRECATED README
+
 More information on the output structure is found in [`data/`](../data/tau).
 
 ## Help functions for JSON structure
